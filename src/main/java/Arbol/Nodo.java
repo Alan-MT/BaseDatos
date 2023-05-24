@@ -8,15 +8,15 @@ package Arbol;
  *
  * @author maverick
  */
-public class Node {
+public class Nodo {
     //Un array de enteros que almacena las claves(valores) asociados con este nodo
-    private int[] keys;
+    private int[] clave;
     //Un array de nodos que alamacena los hijos del nodo actual
-    private Node[] children;
+    private Nodo[] child;
     //Un puntero al nodo padre del nodo actual
-    private Node parent;
+    private Nodo padre;
     //Un puntero al siguiente nodo en el mismo nivel de la jerarquia del arbol 
-    private Node next;
+    private Nodo next;
     //Un entero que indica el numero de claves actuales almacendas en este nodo
     private int numKeys;
     //Un booleano que indica si este nodo es una hoja en el arbol B+
@@ -24,11 +24,11 @@ public class Node {
 
     public static final int n = 3;
 
-    public Node(boolean isLeaf) {
-        keys = new int[2 * n];
-        children = new Node[2 * n + 1];
+    public Nodo(boolean isLeaf) {
+        clave = new int[2 * n];
+        child = new Nodo[2 * n + 1];
         numKeys = 0;
-        parent = null;
+        padre = null;
         next = null;
         this.isLeaf = isLeaf;
     }
@@ -38,7 +38,7 @@ public class Node {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (int i = 0; i < numKeys; i++) {
-            sb.append(keys[i]);
+            sb.append(clave[i]);
 
             if (i != numKeys - 1) {
                 sb.append(", ");
@@ -49,7 +49,7 @@ public class Node {
         if (!isLeaf) {
             sb.append("{");
             for (int i = 0; i <= numKeys; i++) {
-                sb.append(children[i]);
+                sb.append(child[i]);
    
                 if (i != numKeys) {
                     break;
@@ -67,34 +67,34 @@ public class Node {
     }
 
     public int getKey(int index) {
-        return keys[index];
+        return clave[index];
     }
 
     public void setKey(int index, int value) {
-        keys[index] = value;
+        clave[index] = value;
     }
 
-    public Node getChild(int index) {
-        return children[index];
+    public Nodo getChild(int index) {
+        return child[index];
     }
 
-    public void setChild(int index, Node child) {
-        children[index] = child;
+    public void setChild(int index, Nodo child) {
+        this.child[index] = child;
     }
 
-    public Node getParent() {
-        return parent;
+    public Nodo getParent() {
+        return padre;
     }
 
-    public void setParent(Node parent) {
-        this.parent = parent;
+    public void setParent(Nodo parent) {
+        this.padre = parent;
     }
 
-    public Node getNext() {
+    public Nodo getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Nodo next) {
         this.next = next;
     }
 
