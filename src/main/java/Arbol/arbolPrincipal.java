@@ -29,7 +29,7 @@ public class arbolPrincipal {
 
     }
     //encuentra el nodo hoja donde el valor debería ser insertado
-    private Nodo encontraHoja(int value) {
+    public Nodo encontraHoja(int value) {
         Nodo actual = root;
         while (!actual.isLeaf()) {
             int i = 0;
@@ -41,7 +41,7 @@ public class arbolPrincipal {
         return actual;
     }
     // insertar el valor en el nodo hoja
-    private void hojaInsertar(Nodo NodoHoja, int valor) throws DuplicateValueException {
+    public void hojaInsertar(Nodo NodoHoja, int valor) throws DuplicateValueException {
         int index = 0;
         while (index < NodoHoja.getNumKeys() && valor > NodoHoja.getKey(index)) {
             index++;
@@ -60,7 +60,7 @@ public class arbolPrincipal {
         }
     }
 
-    private void splitHoja(Nodo nuevaHOja) {
+    public void splitHoja(Nodo nuevaHOja) {
         Nodo newLeafNode = new Nodo(true);
         //Se determina el índice del medio en el nodo hoja original.
         int middleIndex = nuevaHOja.getNumKeys() / 2;
@@ -114,7 +114,7 @@ public class arbolPrincipal {
         }
     }
 
-    private int findHIjo(Nodo parent, Nodo child) {
+    public int findHIjo(Nodo parent, Nodo child) {
         for (int i = 0; i <= parent.getNumKeys(); i++) {
             if (parent.getChild(i) == child) {
                 return i;
@@ -132,7 +132,7 @@ public class arbolPrincipal {
         }
         return false;
     }
-    private void splitInternoNodo(Nodo internalNode) {
+    public void splitInternoNodo(Nodo internalNode) {
         // Create a new internal node.
         Nodo newInternalNode = new Nodo(false);
         // Copy the second half of the keys and pointers from the original internal node to the new internal node.
@@ -218,7 +218,7 @@ if (internalNode == root) {
             // Intentar pedir prestado una clave de los hermanos
             if (leafIndex > 0 && parent.getChild(leafIndex - 1).getNumKeys() > Nodo.n) {
                 Nodo leftSibling = parent.getChild(leafIndex - 1);
-                borrowFromLeftSibling(leafNode, leftSibling, parent, leafIndex);
+                PrestarHermanoIz(leafNode, leftSibling, parent, leafIndex);
             } else if (leafIndex < parent.getNumKeys() && parent.getChild(leafIndex + 1).getNumKeys() > Nodo.n) {
                 Nodo rightSibling = parent.getChild(leafIndex + 1);
                 borrowFromRightSibling(leafNode, rightSibling, parent, leafIndex);
@@ -237,7 +237,7 @@ if (internalNode == root) {
     }
     
 
-  /*  private void deleteFromLeaf(Nodo leafNode, int value) throws ValueNotFoundException {
+  /*  public void deleteFromLeaf(Nodo leafNode, int value) throws ValueNotFoundException {
         int index = 0;
         while (index < leafNode.getNumKeys() && value > leafNode.getKey(index)) {
             index++;
@@ -255,7 +255,7 @@ if (internalNode == root) {
         }
     }*/
 
-   /* private void borrowOrMergeLeafNode(Nodo leafNode) {
+   /* public void borrowOrMergeLeafNode(Nodo leafNode) {
         Nodo parent = leafNode.getParent();
         int leafIndex = 0;
         while (parent.getChild(leafIndex) != leafNode) {
@@ -280,7 +280,7 @@ if (internalNode == root) {
         }
     }*/
 
-    private void borrowFromLeftSibling(Nodo leafNode, Nodo leftSibling, Nodo parent, int leafIndex) {
+    public void PrestarHermanoIz(Nodo leafNode, Nodo leftSibling, Nodo parent, int leafIndex) {
         // Prestar la clave más grande del hermano izquierdo
         int borrowedKey = leftSibling.getKey(leftSibling.getNumKeys() - 1);
         leftSibling.setNumKeys(leftSibling.getNumKeys() - 1);
@@ -296,7 +296,7 @@ if (internalNode == root) {
         parent.setKey(leafIndex - 1, leafNode.getKey(0));
     }
     
-    private void borrowFromRightSibling(Nodo leafNode, Nodo rightSibling, Nodo parent, int leafIndex) {
+    public void borrowFromRightSibling(Nodo leafNode, Nodo rightSibling, Nodo parent, int leafIndex) {
         // Prestar la clave más pequeña del hermano derecho
         int borrowedKey = rightSibling.getKey(0);
     
@@ -314,7 +314,7 @@ if (internalNode == root) {
         parent.setKey(leafIndex, rightSibling.getKey(0));
     }
     
-    private void mergeWithLeftSibling(Nodo leafNode, Nodo leftSibling, Nodo parent, int leftIndex) {
+    public void mergeWithLeftSibling(Nodo leafNode, Nodo leftSibling, Nodo parent, int leftIndex) {
         // Mover todas las claves del nodo hoja actual al hermano izquierdo
         for (int i = 0; i < leafNode.getNumKeys(); i++) {
             leftSibling.setKey(leftSibling.getNumKeys() + i, leafNode.getKey(i));
@@ -330,7 +330,7 @@ if (internalNode == root) {
         parent.setNumKeys(parent.getNumKeys() - 1);
     }
     
-    private void mergeWithRightSibling(Nodo leafNode, Nodo rightSibling, Nodo parent, int leafIndex) {
+    public void mergeWithRightSibling(Nodo leafNode, Nodo rightSibling, Nodo parent, int leafIndex) {
         // Mover todas las claves del hermano derecho al nodo hoja actual
         for (int i = 0; i < rightSibling.getNumKeys(); i++) {
             leafNode.setKey(leafNode.getNumKeys() + i, rightSibling.getKey(i));
