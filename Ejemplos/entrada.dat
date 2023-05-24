@@ -1,0 +1,15 @@
+<producto>
+	<Descripcion>Boligrafo color negro</Descripcion>
+	<CodProducto>BL0001</CodProducto>
+	<Valor>1.25</Valor>
+</producto>
+<cliente>
+	<Nit> 4564 </Nit>
+	<Nombre> JUan </Nombre>
+	<Apellido> lskadjf </Apellido>
+</cliente>
+<cliente>
+	<Nit> 78965 </Nit>
+	<Nombre> cris </Nombre>
+	<Apellido> morales </Apellido>
+</cliente>

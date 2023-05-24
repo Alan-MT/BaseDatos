@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estructuras>
+     <estructura>
+          <tabla> lasdjflsad </tabla>
+          <Nit>int</Nit>
+          <Nombre>char</Nombre>
+          <Apellido>char</Apellido>
+          <clave>Nit2</clave>
+     </estructura>
+          <estructura>
+          <tabla> tabla22222 </tabla>
+          <NoFactura> int </NoFactura>
+          <Nit> int </Nit>
+          <Fecha> char </Fecha>
+          <Lugar> char </Lugar>
+          <Valor> int </Valor>
+     </estructura>          <estructura>
+          <tabla> saldo3333333 </tabla>
+          <NoFactura> 125 </NoFactura>
+          <Nit> 68465464 </Nit>
+          <Fecha> 21/15/2131 </Fecha>
+          <Lugar> lasdjfkl </Lugar>
+          <Valor> asdkljf </Valor>
+          <clave> Nofactura2 </clave>
+     </estructura>
+</estructuras>

@@ -178,7 +178,85 @@ public class lector {
                     
 
     }
+    
+    public void lectorDat(String ruta, tablaPrincipal[] tabla, dato[] datos){
+        
+
+        try {
+            File file = new File(ruta);
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(file);
+
+            Element rootElement = document.getDocumentElement();
+            NodeList nodeList = rootElement.getChildNodes();
+
+            // Definir arrays de etiquetas principales y secundarias
+           // String[] etiquetasPrincipales = {"producto", "cliente"};
+            /*String[][] etiquetasSecundarias = {
+                {"Descripcion", "CodProducto", "Valor"},
+                {"Nit", "Nombre", "Apellido"}
+            };*/
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                if (nodeList.item(i) instanceof Element) {
+                    Element element = (Element) nodeList.item(i);
+                    String tagName = element.getTagName();
+
+                    if (isEtiquetaPrincipalPermitida(tagName, tabla)) {
+                        System.out.println("Etiqueta principal permitida: " + tagName);
+
+                        // Obtener nodos de etiquetas secundarias
+                        NodeList subNodeList = element.getChildNodes();
+
+                        // Iterar sobre los nodos de etiquetas secundarias
+                        for (int j = 0; j < subNodeList.getLength(); j++) {
+                            if (subNodeList.item(j) instanceof Element) {
+                                Element subElement = (Element) subNodeList.item(j);
+                                String subTagName = subElement.getTagName();
+                                String subTextContent = subElement.getTextContent();
+
+                                if (isEtiquetaSecundariaPermitida(subTagName, tabla)) {
+                                        //dato = new datos()
+//System.out.println("Etiqueta secundaria permitida: " + subTagName);
+                                    
+                                    //System.out.println("Contenido: " + subTextContent);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean isEtiquetaPrincipalPermitida(String etiqueta, tablaPrincipal[] etiquetasPrincipales) {
+        for (tablaPrincipal permitida : etiquetasPrincipales) {
+            if (etiqueta.equalsIgnoreCase(permitida.getNombre())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isEtiquetaSecundariaPermitida(String etiqueta, tablaPrincipal[] etiquetasSecundarias) {
+        for (tablaPrincipal permitidas : etiquetasSecundarias) {
+            for (String permitida : permitidas.getCampo()) {
+                if (etiqueta.equalsIgnoreCase(permitida)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
+
+        
+    
+
 
     
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estructuras>
+	<estructura>
+          <tabla> producto </tabla>
+          <Descripcion> String </Descripcion>
+          <CodProducto> int </CodProducto>
+          <Valor> int </Valor>
+          <clave> CodProducto </clave>
+     </estructura>
+     <estructura>
+          <tabla> cliente </tabla>
+          <Nit>int</Nit>
+          <Nombre>char</Nombre>
+          <Apellido>char</Apellido>
+          <clave>Nit</clave>
+     </estructura>
+          <estructura>
+          <tabla> factura </tabla>
+          <NoFactura> int </NoFactura>
+          <Nit> int </Nit>
+          <Fecha> char </Fecha>
+          <Lugar> char </Lugar>
+          <Valor> int </Valor>
+     </estructura>          
+	<estructura>
+          <tabla> productor </tabla>
+          <FechaVencimiento> 125 </FechaVencimiento>
+          <No> 68465464 </No>
+          <Fecha> char </Fecha>
+          <Lugar> lasdjfkl </Lugar>
+          <Valor> asdkljf </Valor>
+          <clave> cliente </clave>
+     </estructura>
+</estructuras>
